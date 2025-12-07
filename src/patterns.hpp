@@ -1,8 +1,5 @@
 #include <FastLED.h>
 
-int noise_str = 0;
-
-
 CRGB leds[NUM_LEDS];
 uint8_t hue = 0;
 
