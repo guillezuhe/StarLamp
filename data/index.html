@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -7,33 +7,264 @@
   <title>Starlight - BlancaMC</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --space-bg: #0b0d17;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-color: #ffffff;
+      --accent-color: #4facfe;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--space-bg);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Starry Background */
+    #stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+      opacity: var(--opacity);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.8); }
+    }
+
+    .container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #fff, #aaa);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-style: italic;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .control-group {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 15px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Star Type Grid */
+    .star-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    .star-btn {
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+      color: #000;
+      text-shadow: 0 0 2px rgba(255,255,255,0.5);
+      width: 100%;
+    }
+
+    .star-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px currentColor;
+    }
+
+    /* Star Colors */
+    .type-o { background-color: #5388fa; color: #000; box-shadow: 0 0 5px #5388fa; }
+    .type-b { background-color: #aabfff; color: #000; box-shadow: 0 0 5px #aabfff; }
+    .type-a { background-color: #ffffff; color: #000; box-shadow: 0 0 5px #ffffff; }
+    .type-f { background-color: #ffefc4; color: #000; box-shadow: 0 0 5px #ffefc4; }
+    .type-g { background-color: #fff459; color: #000; box-shadow: 0 0 5px #fff459; }
+    .type-k { background-color: #ffc954; color: #000; box-shadow: 0 0 5px #ffc954; }
+    .type-m { background-color: #ff5e36; color: #000; box-shadow: 0 0 5px #ff5e36; }
+    .type-black { background-color: #222; color: #fff; box-shadow: 0 0 5px #555; border: 1px solid #555; text-shadow: none; }
+
+    /* Inputs */
+    .input-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    input[type="number"] {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      width: 80px;
+    }
+
+    button[type="submit"]:not(.star-btn) {
+      background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    button[type="submit"]:not(.star-btn):hover {
+      opacity: 0.9;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Starlight Control</h1>
-  Una lámpara estelar para una doctora galáctica.<br><br>
-  <form action="/setStarType" method="post">
-    Tipo de estrella<br>
-    <input type="submit" name="type" value="0" /> Tipo O<br>
-    <input type="submit" name="type" value="1" /> Tipo B<br>
-    <input type="submit" name="type" value="2" /> Tipo A<br>
-    <input type="submit" name="type" value="3" /> Tipo F<br>
-    <input type="submit" name="type" value="4" /> Tipo G<br>
-    <input type="submit" name="type" value="5" /> Tipo K<br>
-    <input type="submit" name="type" value="6" /> Tipo M<br>
-    <input type="submit" name="type" value="7" /> Enana negra<br>
-  </form>
+  <div id="stars-container"></div>
+  
+  <div class="container">
+    <h1>Starlight</h1>
+    <div class="subtitle">Una lámpara estelar para una doctora galáctica.</div>
+    
+    <div class="control-group">
+      <h2>Tipo de Estrella</h2>
+      <form action="/setStarType" method="post" class="star-type-grid">
+        <button type="submit" name="type" value="0" class="star-btn type-o">Tipo O</button>
+        <button type="submit" name="type" value="1" class="star-btn type-b">Tipo B</button>
+        <button type="submit" name="type" value="2" class="star-btn type-a">Tipo A</button>
+        <button type="submit" name="type" value="3" class="star-btn type-f">Tipo F</button>
+        <button type="submit" name="type" value="4" class="star-btn type-g">Tipo G</button>
+        <button type="submit" name="type" value="5" class="star-btn type-k">Tipo K</button>
+        <button type="submit" name="type" value="6" class="star-btn type-m">Tipo M</button>
+        <button type="submit" name="type" value="7" class="star-btn type-black">Enana Negra</button>
+      </form>
+    </div>
 
+    <div class="control-group">
+      <h2>Magnitud Absoluta</h2>
+      <form action="/setBrightness" method="post">
+        <label>Rango: -10 a +20</label>
+        <div class="input-group">
+          <input type="number" name="value" min="-10" max="20" placeholder="0" required />
+          <button type="submit">Ajustar Brillo</button>
+        </div>
+      </form>
+    </div>
 
-  <form action="/setBrightness" method="post">
-    Magnitud absoluta (-10 - +20): <input type="number" name="value" min="-10" max="20" />
-    <input type="submit" value="Set Brightness" />
-  </form>
+    <div class="control-group">
+      <h2>Actividad Estelar (Ro)</h2>
+      <form action="/setNoiseStr" method="post">
+        <label>Número de Rossby. Rango: 0.1 a 10</label>
+        <div class="input-group">
+          <input type="number" name="value" step="0.1" min="0.1" max="10" placeholder="1.0" required />
+          <button type="submit">Ajustar Actividad</button>
+        </div>
+      </form>
+    </div>
+    <div class="footer">
+      de Guillermo para Blanca  
+    </div>
+  </div>
 
-  <form action="/setNoiseStr" method="post">
-    Actividad estelar. Número de Rossby (0.1-10): <input type="number" name="value" step="0.1" min="0.1" max="10" />
-    <input type="submit" value="Set Noise Strength" />
-  </form>
+  <script>
+    function createStars() {
+      const container = document.getElementById('stars-container');
+      const starCount = 150;
+
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // Random size
+        const size = Math.random() * 6 + 1;
+        
+        // Random duration and delay for twinkle
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 5;
+        const opacity = Math.random() * 0.7 + 0.3;
+
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.setProperty('--duration', `${duration}s`);
+        star.style.animationDelay = `${delay}s`;
+        star.style.setProperty('--opacity', opacity);
+
+        container.appendChild(star);
+      }
+    }
+
+    window.addEventListener('load', createStars);
+  </script>
 </body>
 
 </html>
