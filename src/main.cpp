@@ -1,5 +1,11 @@
 #include <FastLED.h>
 #include <Preferences.h>
+#include <WiFi.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <cmath>
+
+#include <SPIFFS.h>   // Include the SPIFFS library
 
 #define NUM_LEDS 83      // 8x8 matrix
 #define DATA_PIN 5       // GPIO5
@@ -42,6 +48,8 @@ StateManager stateManager;
 
 #include "utilities.hpp"
 #include "patterns.hpp"
+#include "wifisetup.hpp"
+#include "serverweb.hpp"
 
 // Display current star type
 void displayCurrentStar() {
@@ -153,6 +161,7 @@ void handleButtonLed() {
 
 void setup() {
   Serial.begin(115200);
+  SPIFFS.begin();
   pinMode(pinButtonP, INPUT_PULLUP);
 
   // Initialize state manager (loads saved state from flash)
@@ -186,9 +195,16 @@ void setup() {
   for (int i = r1+r2+r3; i < NUM_LEDS; i++) leds[i] = CRGB::Red;
   FastLED.show();
   delay(250);
+
+  // Setup WiFi Access Point
+  setupWiFi();
+  setupServer();
 }
 
 void loop() {
+
+  // Handle web server
+  //server.handleClient();
   
   // Handle button presses to change star type
   handleButtonPresses();

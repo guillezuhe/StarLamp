@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Starlight - BlancaMC</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>Starlight Control</h1>
+  Una lámpara estelar para una doctora galáctica.<br><br>
+  <form action="/setStarType" method="post">
+    Tipo de estrella<br>
+    <input type="submit" name="type" value="0" /> Tipo O<br>
+    <input type="submit" name="type" value="1" /> Tipo B<br>
+    <input type="submit" name="type" value="2" /> Tipo A<br>
+    <input type="submit" name="type" value="3" /> Tipo F<br>
+    <input type="submit" name="type" value="4" /> Tipo G<br>
+    <input type="submit" name="type" value="5" /> Tipo K<br>
+    <input type="submit" name="type" value="6" /> Tipo M<br>
+    <input type="submit" name="type" value="7" /> Enana negra<br>
+  </form>
+
+
+  <form action="/setBrightness" method="post">
+    Magnitud absoluta (-10 - +20): <input type="number" name="value" min="-10" max="20" />
+    <input type="submit" value="Set Brightness" />
+  </form>
+
+  <form action="/setNoiseStr" method="post">
+    Actividad estelar. Número de Rossby (0.1-10): <input type="number" name="value" step="0.1" min="0.1" max="10" />
+    <input type="submit" value="Set Noise Strength" />
+  </form>
+</body>
+
+</html>

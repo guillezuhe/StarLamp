@@ -128,7 +128,8 @@ private:
   
   void _markForSave() {
     lastSaveTime = millis();
-    pendingSave = true;
+    //pendingSave = true;
+    pendingSave = false; //TODO: disable deferred save for testing
   }
   
   void _performSave() {
