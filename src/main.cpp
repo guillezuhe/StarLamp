@@ -8,7 +8,7 @@
 #include <SPIFFS.h>   // Include the SPIFFS library
 
 #define NUM_LEDS 83      // 8x8 matrix
-#define DATA_PIN 5       // GPIO5
+#define DATA_PIN 1       // GPIO1
 #define BRIGHTNESS 10
 #define MATRIX_WIDTH 8
 #define MATRIX_HEIGHT 8
@@ -18,12 +18,12 @@ int r2 = 16;
 int r3 = 24;
 int r4 = 35;
 
-int pinButtonP = 6;  // GPIO6
+int pinButtonP = 0;  // GPIO0
 
 // RGB button led
-const int pinButtonLedR = 15;  // GPIO15
-const int pinButtonLedG = 16;  // GPIO16
-const int pinButtonLedB = 17;  // GPIO17
+const int pinButtonLedR = 2;  // GPIO2
+const int pinButtonLedG = 3;  // GPIO3
+const int pinButtonLedB = 4;  // GPIO4
 const int channelR = 0;
 const int channelG = 1;
 const int channelB = 2;

@@ -24,6 +24,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
@@ -66,12 +67,19 @@
       max-width: 600px;
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       text-align: center;
-      margin: 20px 0;
+    }
+
+    .header-section {
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
 
     h1 {
-      margin-top: 0;
-      font-weight: 300;
+      margin: 0 0 0.5rem 0;
+      font-weight: 900;
       letter-spacing: 2px;
       text-transform: uppercase;
       background: linear-gradient(to right, #fff, #aaa);
@@ -80,10 +88,10 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .subtitle {
+    .header-subtitle {
       font-style: italic;
       opacity: 0.8;
-      margin-bottom: 2rem;
+      margin: 0;
     }
 
     .control-group {
@@ -174,11 +182,11 @@
       opacity: 0.8;
     }
 
-    footer {
+    .footer-section {
       text-align: center;
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
+      margin-top: auto;
+      padding: 0rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -186,12 +194,14 @@
 <body>
   <div id="stars-container"></div>
   
-  <div class="container">
+  <div class="header-section">
     <h1>Starlight</h1>
-    <div class="subtitle">Una lámpara estelar para una doctora galáctica.</div>
-    
+    <div class="header-subtitle">La lámpara que Hertzsprung y Russell soñaron</div>
+  </div>
+
+  <div class="container">
     <div class="control-group">
-      <h2>Tipo de Estrella</h2>
+      <h2>Tipo espectral</h2>
       <form action="/setStarType" method="post" class="star-type-grid">
         <button type="submit" name="type" value="0" class="star-btn type-o">Tipo O</button>
         <button type="submit" name="type" value="1" class="star-btn type-b">Tipo B</button>
@@ -225,9 +235,10 @@
         </div>
       </form>
     </div>
-    <div class="footer">
-      de Guillermo para Blanca  
-    </div>
+  </div>
+
+  <div class="footer-section">
+    <div class="header-subtitle">de Guillermo para Blanca</div>
   </div>
 
   <script>
